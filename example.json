@@ -1,26 +1,30 @@
 {
-  "builders": [{
-    "type": "virtualbox-iso",
-    "guest_os_type": "RedHat_64",
-    "iso_checksum_type": "md5",
-    "iso_checksum": "df0d8f6b12116c653fa60394e4430b57",
-    "iso_url": "http://centos.mirror.serversaustralia.com.au/6.8/isos/i386/CentOS-6.8-i386-bin-DVD1.iso",
-    "ssh_username": "vagrant",
-    "ssh_password": "vagrant",
-	"http_directory": "http",
-	"http_port_min": 10082,
-	"http_port_max": 10089,
-	"ssh_host_port_min": 2222,
-	"ssh_host_port_max": 2229,
-	"ssh_port": 22,
-    "ssh_wait_timeout": "30s",
-	"vm_name": "tdhtest",
-	"floppy_files": [
-        "http/kickstater.cfg"
-      ],
-      "boot_command": "<tab> inst.text inst.ks=hd:fd0:/kickstater.cfg <enter><wait>"
+  "builders": [
+    {
+      "type": "virtualbox-iso",
+      "guest_os_type": "RedHat_64",
+      "iso_checksum_type": "md5",
+      "iso_checksum": "df0d8f6b12116c653fa60394e4430b57",
+      "iso_url": "http://centos.mirror.serversaustralia.com.au/6.8/isos/i386/CentOS-6.8-i386-bin-DVD1.iso",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "http_directory": "http",
+      "http_port_min": 10082,
+      "http_port_max": 10089,
+      "ssh_host_port_min": 2222,
+      "ssh_host_port_max": 2229,
+      "ssh_port": 22,
+      "ssh_wait_timeout": "30s",
+      "vm_name": "tdhtest",
+      "boot_command": [
+        "<wait><esc>",
+        "<wait> linux text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg",
+        "<enter>"
+      ]
     }
+  ],
+  "post-processors": [
+    "vagrant"
   ]
 }
-  "post-processors": ["vagrant"]
-}
+
