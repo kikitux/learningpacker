@@ -1,0 +1,7 @@
+FlatFee 12kwh < $2.80
+the NEXT 78kwh (12kwh+78kwh) = 90kwh 0.08
+>90kwh 0.06
+
+>> 91kwh = 2.80 + (1x0.08) + (1x0.06)
+
+
